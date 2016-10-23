@@ -14,11 +14,12 @@
  <p><input type="submit" value="Entrar"/></p>
 </form>
 
-<form class="colform" action="cadastro.php" method="post">
+<form class="colform" action="cadastrando.php" method="post">
   <h2> Cadastrar</h2>
 <p>Nome: <input type="text" name="name" /></p>
 <p>Login: <input type="text" name="login" /></p>
 <p>Senha: <input type="text" name="password" /></p>
+<p>E-mail: <input type="text" name="email" /></p>
 <p>CPF: <input type="text" name="cpf" /></p>
 <p>RG: <input type="text" name="rg" /></p>
 <p>Endereço: <input type="text" name="endereco" /></p>
