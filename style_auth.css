@@ -1,0 +1,22 @@
+.colform {
+  float: left;
+  width: 350px;
+}
+
+label, input {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 125px;
+    margin-top: 5px;
+}
+
+h2{
+  font-family:cursive;
+}
+label {
+    font-size: 15px;
+}
+
+input[type=submit] {
+    width: 19em;  height: 2em;
+}
