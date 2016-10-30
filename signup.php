@@ -32,7 +32,7 @@
   echo '<h2> Olá, ' . $nome . '</h2>';
 
   $sql = mysqli_query($conexao, "INSERT INTO usuarios(nome, login, senha, cpf, rg, endereco, nivel, email)
-  VALUES('$nome', '$login', '$senha', '$cpf', '$rg', '$endereco', '$account_type', '$endereco')");
+  VALUES('$nome', '$login', '$senha', '$cpf', '$rg', '$endereco', '$account_type', '$email')");
   switch($account_type){
   case 'administrador':
     echo '<form class="colform" action="main.php" method="post">
@@ -61,11 +61,6 @@ break;
 default:
 // Something went wrong or form has been tampered.
 }
-
-
-
 ?>
-
-
 </body>
 </html>
