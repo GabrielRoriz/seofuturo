@@ -21,7 +21,7 @@
     </nav>
 
     <article>
-      <form class="colform" action="update_perfil.php" method="post">
+      <form class="colform" action="perfil.php" method="post">
       <h2> Meu perfil</h2>
       <?php
         $host = "localhost";
@@ -53,6 +53,7 @@
             switch (array_search($value, $row)) {
               case 0:
                 echo "<label for=\"id\">Id: </label>";
+                $id_user = $value;
                 echo "<input type=text name=\"id\" value=" . $value . "></input>";
                 break;
 
@@ -88,6 +89,7 @@
 
               case 7:
                 echo "<label for=\"nivel_de_acesso\">Nível de Acesso: </label>";
+                $nivel_de_acesso = $value;
                 echo "<input type=text name=\"nivel_de_acesso\" value=" . $value . "></input>";
                 break;
 
@@ -95,13 +97,63 @@
                 echo "<label for=\"email\">E-mail: </label>";
                 echo "<input type=text name=\"email\" value=" . $value . "></input>";
                 break;
-
             }
           }
         }
       ?>
-      <input type="submit" value="Atualizar Dados" style="width: 19em;height: 2em;"/>
+      <input type="submit" name="action" value="Atualizar dados" style="width: 19em;height: 2em;"/>
+      <input type="submit" name="action" value="Remover minha conta" style="width: 19em;height: 2em;"/>
      </form>
+
+
+      <?php
+
+      switch ($nivel_de_acesso) {
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+
+
+        $sql = mysqli_query($conexao, "SELECT * FROM profissional WHERE user_id = '$id_user'");
+
+        $row = mysqli_fetch_assoc($sql);
+
+        $prof_id = $row['prof_id'];
+        $user_id = $row['user_id'];
+        $ingles = $row['ingles'];
+        $ingles_nivel = $row['ingles_nivel'];
+        $telefone = $row['telefone'];
+        $experiencia = $row['experiencia'];
+        $especialidade = $row['especialidade'];
+
+        echo "<form class=\"colform\" action=\"perfil.php\" method=\"post\">
+            <h2> Dados Profissionais</h2>
+             <label for=\"telefone\">Telefone: </label><input type=text name=\"telefone\" value='$telefone'></input>
+            <label for= \"english\">Fala em Inglês: </label><select name=\"english\" autofocus='$ingles'>
+                 <option value=\"1\">Não</option>
+                 <option value=\"2\">Sim</option>
+               </select>
+             <select name=\"english_level\" autofocus='$ingles_nivel'>
+               <option value=\"1\">Básico</option>
+               <option value=\"2\">Intermediário baixo</option>
+               <option value=\"3\">Intermediário médio</option>
+               <option value=\"4\">Intermediário alto</option>
+               <option value=\"5\">Avançado</option>
+               <option value=\"6\">Fluente</option>
+             </select>
+             <br>Experiências com programação:
+             <br>
+             <input type=text name=\"experiencia\" class=\"input_longbox\" value='$experiencia'></input>
+             <br> Especialidades:
+             <br>
+             <input type=text name=\"especialidade\" class=\"input_longbox\" value='$especialidade'></input>
+             <input type=\"submit\" name=\"action\" value=\"Atualizar dados profissionais\" style=\"width: 19em;height: 2em;\"/>
+           </form>";
+          break;
+      }
+     ?>
     </article>
     <footer>Copyright © SEOFuturo.com</footer>
   </div>

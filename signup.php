@@ -2,8 +2,15 @@
 <head>
   <title>Cadastro</title>
   <link rel="stylesheet" type="text/css" href="style_index.css">
+  <script type="text/javascript">
+    function login_successfully(){
+      document.location = 'dashboard_inicio_profissional.php';
+    }
+    function login_failed(){
+      document.location = 'auth.php';
+    }
+  </script>
 </head>
-
 <body>
 
 <?php
@@ -31,36 +38,38 @@
 
   echo '<h2> Olá, ' . $nome . '</h2>';
 
+  if($account_type == 'administrador'){
+    $id_account_type = 1;
+  } else if($account_type == 'cliente'){
+    $id_account_type = 2;
+  } else if($account_type == 'profissional'){
+    $id_account_type = 3;
+  }
+
   $sql = mysqli_query($conexao, "INSERT INTO usuarios(nome, login, senha, cpf, rg, endereco, nivel, email)
-  VALUES('$nome', '$login', '$senha', '$cpf', '$rg', '$endereco', '$account_type', '$email')");
-  switch($account_type){
-  case 'administrador':
-    echo '<form class="colform" action="main.php" method="post">
-      <h3> Preencha seus dados para que o cadastro seja realizado </h3>
-   <p>Login: <input type="text" name="login" /></p>
-   <p>Senha: <input type="text" name="password" /></p>
-   <p><input type="submit" value="Entrar"/></p>
-  </form>';
-break;
-case 'cliente':
-    echo '<form class="colform" action="main.php" method="post">
-      <h2> Cadastrar Cliente</h2>
-   <p>Login: <input type="text" name="login" /></p>
-   <p>Senha: <input type="text" name="password" /></p>
-   <p><input type="submit" value="Entrar"/></p>
-  </form>';
-break;
-case 'profissional':
-    echo '<form class="colform" action="main.php" method="post">
-      <h3> Preencha seus dados para que o cadastro seja realizado: </h3>
-   <p>Login: <input type="text" name="login" /></p>
-   <p>Senha: <input type="text" name="password" /></p>
-   <p><input type="submit" value="Entrar"/></p>
-  </form>';
-break;
-default:
-// Something went wrong or form has been tampered.
-}
+  VALUES('$nome', '$login', '$senha', '$cpf', '$rg', '$endereco', '$id_account_type', '$email')");
+
+  $get_id_user = mysqli_query($conexao, "SELECT id FROM usuarios WHERE login = '$login' and senha = '$senha'");
+  $row_id = mysqli_fetch_assoc($get_id_user);
+  $id_user = $row_id['id'];
+
+
+  if($id_account_type == 3) {
+    $prof_sql = mysqli_query($conexao, "INSERT INTO profissional(user_id) VALUES('$id_user')");
+    if(!$prof_sql){
+      echo "<script> login_failed()</script>";
+    }
+  }
+
+  if($sql){
+    session_start();
+    $_SESSION['login'] = $login;
+    $_SESSION['senha'] = $senha;
+    $_SESSION['id'] = $id_user;
+    echo "<script> login_successfully() </script>";
+  } else {
+    echo "<script> login_failed()</script>";
+  }
 ?>
 </body>
 </html>

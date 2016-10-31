@@ -20,3 +20,12 @@ label {
 input[type=submit] {
     width: 19em;  height: 2em;
 }
+
+select{
+    margin-top: 5px;
+    width: 19em;  height: 2em;
+}
+.input_longbox{
+  width: 18.5em;
+  height: 80px;
+}
