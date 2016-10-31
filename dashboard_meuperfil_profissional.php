@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-	<title> Dashboard</title>
+	<title> Dashboard | Meu Perfil</title>
    <link rel="stylesheet" type="text/css" href="style_dashboard.css">
 </head>
 <body>
@@ -16,11 +16,13 @@
         <li><a href="dashboard_inicio_profissional.php">Início</a></li>
         <li><a href="dashboard_meuperfil_profissional.php">Meu Perfil</a></li>
         <li><a href="dashboard_realizarteste_profissional.php">Realizar Teste</a></li>
+        <li><a href="dashboard_minhasentradas_profissional.php">Minhas Entradas</a></li>
       </ul>
     </nav>
 
     <article>
       <form class="colform" action="update_perfil.php" method="post">
+      <h2> Meu perfil</h2>
       <?php
         $host = "localhost";
         $user = "root";

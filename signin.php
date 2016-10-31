@@ -38,8 +38,8 @@
       session_start();
       $_SESSION['login'] = $row[2];
       $_SESSION['senha'] = $row[3];
-      //$_SESSION['nivel'] = $row;
-      //$_SESSION['autenticado'] = true;
+      $_SESSION['id'] = $row[0];
+
       echo "<script> login_successfully() </script>";
     } else {
       echo "<script> login_failed()</script>";

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-	<title> Dashboard</title>
+	<title> Dashboard | Realizar Teste</title>
    <link rel="stylesheet" type="text/css" href="style_dashboard.css">
 </head>
 <body>
@@ -16,16 +16,17 @@
         <li><a href="dashboard_inicio_profissional.php">Início</a></li>
         <li><a href="dashboard_meuperfil_profissional.php">Meu Perfil</a></li>
         <li><a href="dashboard_realizarteste_profissional.php">Realizar Teste</a></li>
+        <li><a href="dashboard_minhasentradas_profissional.php">Minhas Entradas</a></li>
       </ul>
     </nav>
 
     <article>
-      <form action="#" method="post">
-        <h2> Entrada dos Dados</h2>
-          <label for="name">Login: </label><input type="text" name="login" />
-          <label for="name">Nome: </label><input type="text" name="password" />
-          <input type="submit" value="Entrar"/>
-          <input type="button" value="Salvar Entrada" style="margin:10px;display: block;"/>
+      <form class="colform" action="teste.php" method="post">
+        <h2> Realizar Teste</h2>
+          <label for="name">Website: </label><input type="text" name="website" />
+          <label for="name">Palavra-chave: </label><input type="text" name="palavra_chave" />
+          <input type="submit" name="action" value="Salvar Entrada"/>
+          <input type="submit" name="action" value="Realizar Teste"/>
       </form>
     </article>
 
