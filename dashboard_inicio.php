@@ -13,10 +13,11 @@
     </header>
     <nav>
       <ul>
-        <li><a href="dashboard_inicio_profissional.php">Início</a></li>
-        <li><a href="dashboard_meuperfil_profissional.php">Meu Perfil</a></li>
-        <li><a href="dashboard_realizarteste_profissional.php">Realizar Teste</a></li>
-        <li><a href="dashboard_minhasentradas_profissional.php">Minhas Entradas</a></li>
+        <li><a href="dashboard_inicio.php">Início</a></li>
+        <li><a href="dashboard_meuperfil.php">Meu Perfil</a></li>
+        <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
+        <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
+        <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
       </ul>
     </nav>
     <article>

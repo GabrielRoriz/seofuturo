@@ -17,7 +17,7 @@
     <title>Carregando...</title>
     <script type="text/javascript">
       function login_successfully(){
-        document.location = 'dashboard_inicio_profissional.php';
+        document.location = 'dashboard_inicio.php';
       }
       function login_failed(){
         document.location = 'auth.php';

@@ -10,7 +10,7 @@
   <form class="colform" action="signin.php" method="post">
 		<h2>Entrar</h2>
  <label for="login"> Login:</label><input type="text" name="login" />
- <label for="name">Nome:</label><input type="text" name="password" />
+ <label for="name">Senha:</label><input type="text" name="password" />
  <input type="submit" value="Entrar"/>
 </form>
 

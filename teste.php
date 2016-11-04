@@ -3,10 +3,10 @@
     <title>Carregando...</title>
     <script type="text/javascript">
       function login_successfully(){
-        document.location = 'dashboard_realizarteste_profissional.php';
+        document.location = 'dashboard_realizarteste.php';
       }
       function login_failed(){
-        document.location = 'dashboard_inicio_profissional.php';
+        document.location = 'dashboard_inicio.php';
       }
     </script>
   </head>
@@ -35,7 +35,7 @@
 
       $sql = mysqli_query($conexao, "INSERT INTO entradas(usuario_id, website, chave)
       VALUES('$id', '$website', '$palavra_chave')");
-      
+
       var_dump($row);
       if($sql){
         echo "<script> login_successfully() </script>";

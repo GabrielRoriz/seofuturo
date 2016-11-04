@@ -17,7 +17,7 @@
     <title>Carregando...</title>
     <script type="text/javascript">
       function update_successfully(){
-        document.location = 'dashboard_meuperfil_profissional.php';
+        document.location = 'dashboard_meuperfil.php';
       }
       function remove_successfully(){
         document.location = 'auth.php';
@@ -65,6 +65,12 @@
       $nivel_ingles = $_POST['english_level'];
       $experiencia = $_POST['experiencia'];
       $especialidade = $_POST['especialidade'];
+
+      echo $ingles;
+      echo $nivel_ingles;
+      echo $experiencia;
+      echo $especialidade;
+
 
       session_start();
       $update_sql = "UPDATE profissional SET ingles='".$ingles."', ingles_nivel='".$nivel_ingles."', especialidade= '".$especialidade."', experiencia= '".$experiencia."', telefone= '".$telefone."' WHERE user_id='".$_SESSION['id']."'";

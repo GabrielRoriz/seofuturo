@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -13,10 +13,11 @@
     </header>
     <nav>
       <ul>
-        <li><a href="dashboard_inicio_profissional.php">Início</a></li>
-        <li><a href="dashboard_meuperfil_profissional.php">Meu Perfil</a></li>
-        <li><a href="dashboard_realizarteste_profissional.php">Realizar Teste</a></li>
-        <li><a href="dashboard_minhasentradas_profissional.php">Minhas Entradas</a></li>
+        <li><a href="dashboard_inicio.php">Início</a></li>
+        <li><a href="dashboard_meuperfil.php">Meu Perfil</a></li>
+        <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
+        <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
+        <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
       </ul>
     </nav>
 
@@ -52,9 +53,9 @@
           foreach($row as $value){
             switch (array_search($value, $row)) {
               case 0:
-                echo "<label for=\"id\">Id: </label>";
+                //echo "<label for=\"id\">Id: </label>";
                 $id_user = $value;
-                echo "<input type=text name=\"id\" value=" . $value . "></input>";
+                //echo "<text name=\"id\" value=" . $value . "></input>";
                 break;
 
               case 1:
@@ -90,7 +91,19 @@
               case 7:
                 echo "<label for=\"nivel_de_acesso\">Nível de Acesso: </label>";
                 $nivel_de_acesso = $value;
-                echo "<input type=text name=\"nivel_de_acesso\" value=" . $value . "></input>";
+                switch ($nivel_de_acesso) {
+                    case 1:
+                      echo "<input type=text name=\"nivel_de_acesso\" value=\"Administrador\"></input>";
+                      break;
+
+                    case 2:
+                      echo "<input type=text name=\"nivel_de_acesso\" value=\"Cliente\"></input>";
+                      break;
+
+                    case 3:
+                      echo "<input type=text name=\"nivel_de_acesso\" value=\"Profissional\"  readonly=\"readonly\"></input>";
+                      break;
+                }
                 break;
 
               case 8:
@@ -132,8 +145,8 @@
             <h2> Dados Profissionais</h2>
              <label for=\"telefone\">Telefone: </label><input type=text name=\"telefone\" value='$telefone'></input>
             <label for= \"english\">Fala em Inglês: </label><select name=\"english\" autofocus='$ingles'>
-                 <option value=\"1\">Não</option>
-                 <option value=\"2\">Sim</option>
+                 <option value=\"1\">Sim</option>
+                 <option value=\"2\">Não</option>
                </select>
              <select name=\"english_level\" autofocus='$ingles_nivel'>
                <option value=\"1\">Básico</option>
