@@ -12,51 +12,104 @@ if (!$conexao) {
 }
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Carregando...</title>
-  <script type="text/javascript">
-  function update_successfully(){
-    document.location = 'dashboard_meuperfil.php';
+  <meta charset="UTF-8">
+  <title> Dashboard | Início</title>
+  <link rel="stylesheet" type="text/css" href="style_dashboard.css">
+  <style>
+  #input_search{
+    width: 75%;
   }
-  function remove_successfully(){
-    document.location = 'auth.php';
+  #select_search{
+    width: 88.5%;
   }
-  </script>
+
+  table, td, th {
+    border: 1px solid black;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    height: 50px;
+  }
+  </style>
 </head>
-
 <body>
-  <?php
-  $textsearch = $_POST['textsearch'];
-  $filter_search = $_POST['filter_search'];
 
-  if($filter_search == 'name'){
+  <div class="container">
+    <header>
+      <h1>SEOFuturo</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="dashboard_inicio.php">Início</a></li>
+        <li><a href="dashboard_meuperfil.php">Meu Perfil</a></li>
+        <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
+        <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
+        <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+      </ul>
+    </nav>
+    <article>
+      <h2> Buscar Profissionais</h2>
+      <form action="search_profissional.php" method="post">
 
-    $sql = "SELECT * FROM usuarios WHERE nome LIKE '%$textsearch%' and nivel = '3'";
+        <input id="input_search"  type="text" name="textsearch">
+        <input type="submit" value="Pesquisar">
+        <select id="select_search" name="filter_search">
+          <option value="name">Nome</option>
+          <option value="exp">Experiência em Programação</option>
+          <option value="esp">Especialidades</option>
+        </select>
+      </form>
+
+      <?php
+      $textsearch = $_POST['textsearch'];
+      $filter_search = $_POST['filter_search'];
+
+      if($filter_search == 'name'){
+
+        $sql = "SELECT id FROM usuarios WHERE nome LIKE '%$textsearch%' and nivel = '3'";
+
+      } else if($filter_search == 'exp'){
+        $sql = "SELECT user_id FROM profissional WHERE experiencia LIKE '%$textsearch%'";
+      } else if($filter_search == 'esp'){
+        $sql = "SELECT user_id FROM profissional WHERE especialidade LIKE '%$textsearch%'";
+      }
+      $result = mysqli_query($conexao, $sql);
 
 
+      echo "<table>";
+      echo "<tr>";
+      echo "<th> Nome </th>";
+      echo "</tr>";
 
-  } else if($filter_search == 'exp'){
+      while($linha = mysqli_fetch_array($result)){
+        if($filter_search == 'exp' || $filter_search == 'esp' ){
+          $id_user = $linha['user_id'];
+        } else {
+          $id_user = $linha['id'];
+        }
 
-  } else if($filter_search == 'esp'){
+        $sql_fromUser = "SELECT * FROM usuarios WHERE id = '$id_user'";
+        $resultUser = mysqli_query($conexao, $sql_fromUser);
+        while($linhaUser = mysqli_fetch_array($resultUser)){
+          echo "<tr>";
+          echo "<td>" . $linhaUser['nome'] . "</td>";
+          echo "</tr>";
+        }
 
-  }
-  $result = mysqli_query($conexao, $sql);
-  var_dump($result);
-  while($linha = mysqli_fetch_array($result)){
-      echo $linha['nome'];
-      echo $linha['id'];
-  }
 
-  /*
-  if ($_POST['action'] == 'Atualizar dados') {
-    $sql = "UPDATE usuarios SET nome='" .$nome. "', login= '" .$login. "', senha= '" .$senha. "', cpf= '" .$cpf. "', rg= '" .$rg. "', endereco= '" .$endereco. "', email= '" .$email. "' WHERE id='" .$id. "'";
-    $result = mysqli_query($conexao, $sql);
-
-    if($result){
-      echo "<script> update_successfully() </script>";
-    }
-  }*/
-  ?>
+      }
+        echo "</table>";
+      ?>
+    </article>
+    <footer>Copyright © SEOFuturo.com</footer>
+  </div>
 </body>
 </html>

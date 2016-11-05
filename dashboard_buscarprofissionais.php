@@ -40,7 +40,6 @@
             <option value="esp">Especialidades</option>
         	</select>
       </form>
-    </form>
   </article>
   <footer>Copyright © SEOFuturo.com</footer>
 </div>
