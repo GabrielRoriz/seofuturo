@@ -30,17 +30,14 @@
     </nav>
     <article>
       <h2> Buscar Profissionais</h2>
-      <form action="action_page.php">
-        <?php
-        //echo date('mY');
-        ?>
+      <form action="search_profissional.php" method="post">
 
-        <input id="input_search"  type="text" name="firstname" value="Mickey">
+        <input id="input_search"  type="text" name="textsearch">
         <input type="submit" value="Pesquisar">
         	<select id="select_search" name="filter_search">
-        	  <option value="administrador">Nome</option>
-        	  <option value="profissional">Experiência em Programação</option>
-            <option value="profissional">Especialidades</option>
+        	  <option value="name">Nome</option>
+        	  <option value="exp">Experiência em Programação</option>
+            <option value="esp">Especialidades</option>
         	</select>
       </form>
     </form>
