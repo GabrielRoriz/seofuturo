@@ -30,9 +30,23 @@ if (!$conexao) {
   $textsearch = $_POST['textsearch'];
   $filter_search = $_POST['filter_search'];
 
-  echo $textsearch;
-  echo '<br>';
-  echo $filter_search;
+  if($filter_search == 'name'){
+
+    $sql = "SELECT * FROM usuarios WHERE nome LIKE '%$textsearch%' and nivel = '3'";
+
+
+
+  } else if($filter_search == 'exp'){
+
+  } else if($filter_search == 'esp'){
+
+  }
+  $result = mysqli_query($conexao, $sql);
+  var_dump($result);
+  while($linha = mysqli_fetch_array($result)){
+      echo $linha['nome'];
+      echo $linha['id'];
+  }
 
   /*
   if ($_POST['action'] == 'Atualizar dados') {
