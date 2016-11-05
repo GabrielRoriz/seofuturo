@@ -28,11 +28,12 @@ if (!$conexao) {
 
   table, td, th {
     border: 1px solid black;
+    text-align: center;
   }
 
   table {
     border-collapse: collapse;
-    width: 100%;
+    width: 88.5%;
   }
 
   th {
@@ -86,7 +87,13 @@ if (!$conexao) {
 
       echo "<table>";
       echo "<tr>";
-      echo "<th> Nome </th>";
+      echo "<th>Nome </th>";
+      echo "<th>Inglês </th>";
+      echo "<th>Nível do Inglês </th>";
+      echo "<th>Telefone </th>";
+      echo "<th>Experiência em Programação</th>";
+      echo "<th>Especialidade</th>";
+      echo "<th>Iniciar Atividade de Trabalho</th>";
       echo "</tr>";
 
       while($linha = mysqli_fetch_array($result)){
@@ -98,15 +105,55 @@ if (!$conexao) {
 
         $sql_fromUser = "SELECT * FROM usuarios WHERE id = '$id_user'";
         $resultUser = mysqli_query($conexao, $sql_fromUser);
+
         while($linhaUser = mysqli_fetch_array($resultUser)){
+
+          $sql_fromProfissional = "SELECT * FROM profissional WHERE user_id = '$id_user'";
+          $resultProfissional = mysqli_query($conexao, $sql_fromProfissional);
+          $linhaProfissional = mysqli_fetch_row($resultProfissional);
+
           echo "<tr>";
           echo "<td>" . $linhaUser['nome'] . "</td>";
+          if($linhaProfissional[2] == 1){
+            echo "<td> X </td>";
+            switch ($linhaProfissional[3]) {
+              case 1:
+              echo "<td>Básico</td>";
+              break;
+
+              case 2:
+              echo "<td>Intermediário baixo</td>";
+              break;
+              case 3:
+              echo "<td>Intermediário médio</td>";
+              break;
+              case 4:
+              echo "<td>Intermediário alto</td>";
+              break;
+              case 5:
+              echo "<td>Avançado</td>";
+              break;
+              case 6:
+              echo "<td>Fluente</td>";
+              break;
+
+            }
+
+          } else if($linhaProfissional[2] == 2){
+            echo "<td> - </td>";
+            echo "<td> - </td>";
+          }
+
+          echo "<td>" . $linhaProfissional[4] . "</td>";
+          echo "<td>" . $linhaProfissional[5] . "</td>";
+          echo "<td>" . $linhaProfissional[6] . "</td>";
+          echo "<td><a href=\"remover_entrada.php?id=" . $linhaProfissional[0] . "\">  Iniciar Atividade de Trabalho </a></td>";
+
           echo "</tr>";
+
         }
-
-
       }
-        echo "</table>";
+      echo "</table>";
       ?>
     </article>
     <footer>Copyright © SEOFuturo.com</footer>
