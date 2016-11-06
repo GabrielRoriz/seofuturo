@@ -1,32 +1,65 @@
 <?php
-  $host = "localhost";
-  $user = "root";
-  $pass = "";
-  $banco = "seofuturo";
-  $conexao = mysqli_connect($host, $user, $pass, $banco);
-  if (!$conexao) {
-    echo "<br> Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "<br> Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-    echo "<br> Debugging error: " . mysqli_connect_error() . PHP_EOL;
-    exit;
-  }
+$host = "localhost";
+$user = "root";
+$pass = "";
+$banco = "seofuturo";
+$conexao = mysqli_connect($host, $user, $pass, $banco);
+if (!$conexao) {
+  echo "<br> Error: Unable to connect to MySQL." . PHP_EOL;
+  echo "<br> Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+  echo "<br> Debugging error: " . mysqli_connect_error() . PHP_EOL;
+  exit;
+}
 ?>
 
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Carregando...</title>
-    <script type="text/javascript">
-      function init_successfully(){
-        document.location = 'dashboard_meuperfil.php';
-      }
-      function init_fail(){
-        document.location = 'auth.php';
-      }
-    </script>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title> Dashboard | Início</title>
+  <link rel="stylesheet" type="text/css" href="style_dashboard.css">
+  <style>
+  #input_search{
+    width: 75%;
+  }
+  #select_search{
+    width: 88.5%;
+  }
 
-  <body>
-  <?php
+  table, td, th {
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 88.5%;
+    margin-top: 20px;
+  }
+
+  th {
+    height: 50px;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>SEOFuturo</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="dashboard_inicio.php">Início</a></li>
+        <li><a href="dashboard_meuperfil.php">Meu Perfil</a></li>
+        <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
+        <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
+        <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+      </ul>
+    </nav>
+    <article>
+      <h2> Buscar Profissionais</h2>
+    <?php
     session_start();
     $id = $_SESSION['id'];
     $login = $_SESSION['login'];
@@ -41,54 +74,20 @@
     echo $nivel;
     echo "<br>";
     echo $worker_id;
-    /*
 
-    if ($_POST['action'] == 'Atualizar dados') {
-    $_SESSION["login"] = $login;
-    $_SESSION["senha"] = $senha;
-
-    $sql = "UPDATE usuarios SET nome='" .$nome. "', login= '" .$login. "', senha= '" .$senha. "', cpf= '" .$cpf. "', rg= '" .$rg. "', endereco= '" .$endereco. "', email= '" .$email. "' WHERE id='" .$id. "'";
-    $result = mysqli_query($conexao, $sql);
-
-    if($result){
-      echo "<script> update_successfully() </script>";
-    }
-
-    } else if ($_POST['action'] == 'Remover minha conta') {
-        $sql = "DELETE FROM usuarios WHERE id = '$id'";
-
-        $result = mysqli_query($conexao, $sql);
-        if($result){
-          if($nivel_de_acesso == 'Profissional'){
-            $sql_pro = "DELETE FROM profissional WHERE User_id = '$id'";
-            mysqli_query($conexao, $sql_pro);
-          }
-          echo "<script> remove_successfully() </script>";
-        }
-      } else if ($_POST['action'] == 'Atualizar dados profissionais'){
-
-      echo "entrou!";
-
-      $telefone = $_POST['telefone'];
-
-      $ingles = $_POST['english'];
-      $nivel_ingles = $_POST['english_level'];
-      $experiencia = $_POST['experiencia'];
-      $especialidade = $_POST['especialidade'];
-
-      echo $ingles;
-      echo $nivel_ingles;
-      echo $experiencia;
-      echo $especialidade;
-
-
-      $update_sql = "UPDATE profissional SET ingles='".$ingles."', ingles_nivel='".$nivel_ingles."', especialidade= '".$especialidade."', experiencia= '".$experiencia."', telefone= '".$telefone."' WHERE user_id='".$_SESSION['id']."'";
-      $result = mysqli_query($conexao, $update_sql);
-
+    if($nivel == 2){
+      $sql = "INSERT INTO trabalho(client_id, worker_id) VALUES('$id', '$worker_id')";
+      $result = mysqli_query($conexao, $sql);
       if($result){
-        echo "<script> update_successfully() </script>";
+          echo "<h1>Trabalho inciado!</h1>";
       }
-    }*/
+    } else {
+      echo "<h1>Você não é um Cliente!</h1>";
+
+    }
   ?>
-  </body>
+</article>
+<footer>Copyright © SEOFuturo.com</footer>
+</div>
+</body>
 </html>
