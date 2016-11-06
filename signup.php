@@ -66,6 +66,7 @@
     $_SESSION['login'] = $login;
     $_SESSION['senha'] = $senha;
     $_SESSION['id'] = $id_user;
+    $_SESSION['nivel'] = $id_account_type;
     echo "<script> login_successfully() </script>";
   } else {
     echo "<script> login_failed()</script>";

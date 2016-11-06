@@ -34,6 +34,7 @@ if (!$conexao) {
   table {
     border-collapse: collapse;
     width: 88.5%;
+    margin-top: 20px;
   }
 
   th {
@@ -147,7 +148,7 @@ if (!$conexao) {
           echo "<td>" . $linhaProfissional[4] . "</td>";
           echo "<td>" . $linhaProfissional[5] . "</td>";
           echo "<td>" . $linhaProfissional[6] . "</td>";
-          echo "<td><a href=\"remover_entrada.php?id=" . $linhaProfissional[0] . "\">  Iniciar Atividade de Trabalho </a></td>";
+          echo "<td><a href=\"work.php?worker_id=" . $linhaProfissional[0] . "\">  Iniciar Atividade de Trabalho </a></td>";
 
           echo "</tr>";
 

@@ -36,9 +36,10 @@
     var_dump($row);
     if($row !== NULL){
       session_start();
+      $_SESSION['id'] = $row[0];
       $_SESSION['login'] = $row[2];
       $_SESSION['senha'] = $row[3];
-      $_SESSION['id'] = $row[0];
+      $_SESSION['nivel'] = $row[7];
 
       echo "<script> login_successfully() </script>";
     } else {
