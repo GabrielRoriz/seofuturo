@@ -40,6 +40,14 @@ if (!$conexao) {
   th {
     height: 50px;
   }
+
+  .input_longbox_w{
+    width: 500px;
+    height: 250px;
+  }
+  .bt_work{
+    width: 505px;
+  }
   </style>
 </head>
 <body>
@@ -58,36 +66,39 @@ if (!$conexao) {
       </ul>
     </nav>
     <article>
-      <h2> Buscar Profissionais</h2>
-    <?php
-    session_start();
-    $id = $_SESSION['id'];
-    $login = $_SESSION['login'];
-    $senha = $_SESSION['senha'];
-    $nivel = $_SESSION['nivel'];
-    $worker_id = $_GET['worker_id'];
+      <h2> Descrição do trabalho</h2>
+      <?php
+      session_start();
+      $id = $_SESSION['id'];
+      $login = $_SESSION['login'];
+      $senha = $_SESSION['senha'];
+      $nivel = $_SESSION['nivel'];
+      $worker_id = $_GET['worker_id'];
+      /*echo $id;
+      echo $login;
+      echo $senha;
+      echo $nivel;
+      echo "<br>";
+      echo $worker_id;*/
 
+      if($nivel == 2){
+        $sql = "INSERT INTO trabalho(client_id, worker_id) VALUES('$id', '$worker_id')";
+        $result = mysqli_query($conexao, $sql);
+        if($result){
+        }
+      } else {
+        echo "<h1>Você não é um Cliente!</h1>";
 
-    echo $id;
-    echo $login;
-    echo $senha;
-    echo $nivel;
-    echo "<br>";
-    echo $worker_id;
-
-    if($nivel == 2){
-      $sql = "INSERT INTO trabalho(client_id, worker_id) VALUES('$id', '$worker_id')";
-      $result = mysqli_query($conexao, $sql);
-      if($result){
-          echo "<h1>Trabalho inciado!</h1>";
       }
-    } else {
-      echo "<h1>Você não é um Cliente!</h1>";
+      ?>
 
-    }
-  ?>
-</article>
-<footer>Copyright © SEOFuturo.com</footer>
-</div>
+
+      <form action="perfil.php" method="post">
+        <br> <input type=text name="especialidade" class="input_longbox_w"></input>
+        <br> <input type="submit" name="action" value="Salvar Informações" class="bt_work"/>
+      </form>
+    </article>
+    <footer>Copyright © SEOFuturo.com</footer>
+  </div>
 </body>
 </html>
