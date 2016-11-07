@@ -18,6 +18,7 @@
         <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+        <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
       </ul>
     </nav>
 

@@ -55,6 +55,7 @@ if (!$conexao) {
         <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+        <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
       </ul>
     </nav>
     <article>
@@ -148,7 +149,8 @@ if (!$conexao) {
           echo "<td>" . $linhaProfissional[4] . "</td>";
           echo "<td>" . $linhaProfissional[5] . "</td>";
           echo "<td>" . $linhaProfissional[6] . "</td>";
-          echo "<td><a href=\"work.php?worker_id=" . $linhaProfissional[0] . "\">  Iniciar Atividade de Trabalho </a></td>";
+          session_start();
+          echo "<td><a href=\"work.php?worker_id=" . $linhaProfissional[0] . "&id= ".$_SESSION['id']."'\">  Iniciar Atividade de Trabalho </a></td>";
 
           echo "</tr>";
 

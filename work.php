@@ -63,10 +63,10 @@ if (!$conexao) {
         <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+        <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
       </ul>
     </nav>
     <article>
-      <h2> Descrição do trabalho</h2>
       <?php
       session_start();
       $id = $_SESSION['id'];
@@ -74,6 +74,8 @@ if (!$conexao) {
       $senha = $_SESSION['senha'];
       $nivel = $_SESSION['nivel'];
       $worker_id = $_GET['worker_id'];
+      $_SESSION['worker_id'] = $worker_id;
+
       /*echo $id;
       echo $login;
       echo $senha;
@@ -85,18 +87,18 @@ if (!$conexao) {
         $sql = "INSERT INTO trabalho(client_id, worker_id) VALUES('$id', '$worker_id')";
         $result = mysqli_query($conexao, $sql);
         if($result){
+          echo "<form action=\"update_trabalho.php\" method=\"post\">";
+          echo "<h2> Descrição do trabalho</h2>
+            <br> <input type=\"text\" name=\"textreceive\" class=\"input_longbox_w\"></input>
+            <br> <input type=\"submit\" name=\"action\" value=\"Salvar Informações\" class=\"bt_work\"/>
+          </form>";
         }
       } else {
+        echo "<h2> ERRO! </h2>";
         echo "<h1>Você não é um Cliente!</h1>";
-
-      }
-      ?>
+      }?>
 
 
-      <form action="perfil.php" method="post">
-        <br> <input type=text name="especialidade" class="input_longbox_w"></input>
-        <br> <input type="submit" name="action" value="Salvar Informações" class="bt_work"/>
-      </form>
     </article>
     <footer>Copyright © SEOFuturo.com</footer>
   </div>
