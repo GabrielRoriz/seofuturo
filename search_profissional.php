@@ -56,6 +56,7 @@ if (!$conexao) {
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
         <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
+        <li><a href="auth.php">Sair</a></li>
       </ul>
     </nav>
     <article>
@@ -72,6 +73,7 @@ if (!$conexao) {
       </form>
 
       <?php
+      session_start();
       $textsearch = $_POST['textsearch'];
       $filter_search = $_POST['filter_search'];
 
@@ -96,6 +98,7 @@ if (!$conexao) {
       echo "<th>Experiência em Programação</th>";
       echo "<th>Especialidade</th>";
       echo "<th>Iniciar Atividade de Trabalho</th>";
+      echo "<th>Conexão</th>";
       echo "</tr>";
 
       while($linha = mysqli_fetch_array($result)){
@@ -149,9 +152,8 @@ if (!$conexao) {
           echo "<td>" . $linhaProfissional[4] . "</td>";
           echo "<td>" . $linhaProfissional[5] . "</td>";
           echo "<td>" . $linhaProfissional[6] . "</td>";
-          session_start();
           echo "<td><a href=\"work.php?worker_id=" . $linhaProfissional[0] . "&id= ".$_SESSION['id']."'\">  Iniciar Atividade de Trabalho </a></td>";
-
+          echo "<td><a href=\"realize_connection.php?worker_id=" . $linhaProfissional[0] . "&id= ".$_SESSION['id']."'\">Realizar Conexão</a></td>";
           echo "</tr>";
 
         }

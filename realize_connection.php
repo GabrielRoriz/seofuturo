@@ -19,39 +19,9 @@ if (!$conexao) {
   <title> Dashboard | Início</title>
   <link rel="stylesheet" type="text/css" href="style_dashboard.css">
   <style>
-  #input_search{
-    width: 75%;
-  }
-  #select_search{
-    width: 88.5%;
-  }
-
-  table, td, th {
-    border: 1px solid black;
-    text-align: center;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 88.5%;
-    margin-top: 20px;
-  }
-
-  th {
-    height: 50px;
-  }
-
-  .input_longbox_w{
-    width: 500px;
-    height: 250px;
-  }
-  .bt_work{
-    width: 505px;
-  }
   </style>
 </head>
 <body>
-
   <div class="container">
     <header>
       <h1>SEOFuturo</h1>
@@ -84,20 +54,31 @@ if (!$conexao) {
       echo "<br>";
       echo $worker_id;*/
 
-      if($nivel == 2){
-        $sql = "INSERT INTO trabalho(client_id, worker_id) VALUES('$id', '$worker_id')";
+      if($nivel == 3){
+        $sql = "SELECT prof_id FROM profissional WHERE user_id='$id'";
         $result = mysqli_query($conexao, $sql);
         if($result){
-          echo "<form action=\"update_trabalho.php\" method=\"post\">";
-          echo "<h2> Descrição do trabalho</h2>
-            <br> <input type=\"text\" name=\"textreceive\" class=\"input_longbox_w\"></input>
-            <br> <input type=\"submit\" name=\"action\" value=\"Salvar Informações\" class=\"bt_work\"/>
-          </form>";
+          $prof_id = mysqli_fetch_row($result);
+          $prof_id = $prof_id[0];
+
+          $date = new DateTime();
+          $data = $date->getTimestamp();
+          $sql = "INSERT INTO conexoes(user_id, prof_id, data) VALUES('$prof_id', '$worker_id', '$data')";
+          $result = mysqli_query($conexao, $sql);
+          if($result){
+            echo "Sucesso rapazeada";
+          } else {
+            echo "Deu problema em criar a conexão";
+          }
+        } else {
+          echo "Deu problema em pegar seus dados";
         }
+        
       } else {
         echo "<h2> ERRO! </h2>";
-        echo "<h1>Você não é um Cliente!</h1>";
-      }?>
+        echo "<h1>Você não é um Profissional!</h1>";
+      }
+      ?>
 
 
     </article>

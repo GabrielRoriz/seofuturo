@@ -1,4 +1,4 @@
-<?php
+  <?php
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -50,6 +50,7 @@ if (!$conexao) {
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
         <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
+        <li><a href="auth.php">Sair</a></li>
       </ul>
     </nav>
     <article>
