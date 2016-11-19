@@ -63,9 +63,21 @@ if (!$conexao) {
         <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+        <?php
+        session_start();
+        $id = $_SESSION['id'];
+        $sql = "SELECT * FROM profissional WHERE user_id='$id'";
+        $result = mysqli_query($conexao, $sql);
+        if($result){
+          $result_temp = mysqli_fetch_row($result);
+          if(!empty($result_temp)){
+            echo "<li><a href=\"auth.php\">Minhas Conexões</a></li>";
+          }
+        }
+        ?>
         <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
         <li><a href="auth.php">Sair</a></li>
-      </ul>
+</ul>
     </nav>
     <article>
       <?php

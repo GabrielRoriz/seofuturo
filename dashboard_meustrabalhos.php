@@ -1,4 +1,4 @@
-  <?php
+<?php
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -43,12 +43,25 @@ if (!$conexao) {
       <h1>SEOFuturo</h1>
     </header>
     <nav>
+
       <ul>
         <li><a href="dashboard_inicio.php">Início</a></li>
         <li><a href="dashboard_meuperfil.php">Meu Perfil</a></li>
         <li><a href="dashboard_realizarteste.php">Realizar Teste</a></li>
         <li><a href="dashboard_minhasentradas.php">Minhas Entradas</a></li>
         <li><a href="dashboard_buscarprofissionais.php">Buscar Profissionais</a></li>
+        <?php
+        session_start();
+        $id = $_SESSION['id'];
+        $sql = "SELECT * FROM profissional WHERE user_id='$id'";
+        $result = mysqli_query($conexao, $sql);
+        if($result){
+          $result_temp = mysqli_fetch_row($result);
+          if(!empty($result_temp)){
+            echo "<li><a href=\"auth.php\">Minhas Conexões</a></li>";
+          }
+        }
+        ?>
         <li><a href="dashboard_meustrabalhos.php">Meus trabalhos</a></li>
         <li><a href="auth.php">Sair</a></li>
       </ul>
@@ -56,7 +69,6 @@ if (!$conexao) {
     <article>
       <h2> Meus Trabalhos</h2>
       <?php
-      session_start();
       $id = $_SESSION['id'];
       $login = $_SESSION['login'];
       $senha = $_SESSION['senha'];
@@ -97,8 +109,8 @@ if (!$conexao) {
             if($linha['nota'] == -1 && $linha['status'] == 2){
               echo "<form action=\"dar_nota_trabalho.php\" method=\"post\">";
               echo "<br> <input type=\"text\" name=\"nota\"></input>
-                <br><input type=\"hidden\" name=\"workerid\" value=\"". $linha['worker_id'] ."\"/>
-                 <br><input type=\"submit\" name=\"action\" value=\"Atribuir Nota\" class=\"bt_work\"/>
+              <br><input type=\"hidden\" name=\"workerid\" value=\"". $linha['worker_id'] ."\"/>
+              <br><input type=\"submit\" name=\"action\" value=\"Atribuir Nota\" class=\"bt_work\"/>
               </form>";
             } else if($linha['nota'] == 1){
               echo " - ";

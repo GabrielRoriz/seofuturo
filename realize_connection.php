@@ -54,6 +54,7 @@ if (!$conexao) {
       echo "<br>";
       echo $worker_id;*/
 
+
       if($nivel == 3){
         $sql = "SELECT prof_id FROM profissional WHERE user_id='$id'";
         $result = mysqli_query($conexao, $sql);
@@ -66,6 +67,7 @@ if (!$conexao) {
           $sql = "INSERT INTO conexoes(user_id, prof_id, data) VALUES('$prof_id', '$worker_id', '$data')";
           $result = mysqli_query($conexao, $sql);
           if($result){
+            //redirecionar para a página de minhas conexões
             echo "Sucesso rapazeada";
           } else {
             echo "Deu problema em criar a conexão";
@@ -73,7 +75,6 @@ if (!$conexao) {
         } else {
           echo "Deu problema em pegar seus dados";
         }
-        
       } else {
         echo "<h2> ERRO! </h2>";
         echo "<h1>Você não é um Profissional!</h1>";
