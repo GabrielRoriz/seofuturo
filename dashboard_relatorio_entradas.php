@@ -16,14 +16,14 @@ if (!$conexao) {
 <html>
 <head>
   <meta charset="UTF-8">
-  <title> Dashboard | Realizar Teste</title>
-  <link rel="stylesheet" type="text/css" href="style_dashboard.css">
+	<title> Dashboard | Início</title>
+   <link rel="stylesheet" type="text/css" href="style_dashboard.css">
 </head>
 <body>
 
   <div class="container">
     <header>
-      <h1>SEOFuturo</h1>
+       <h1>SEOFuturo</h1>
     </header>
     <nav>
       <ul>
@@ -35,12 +35,24 @@ if (!$conexao) {
         <?php
         session_start();
         $id = $_SESSION['id'];
-        $sql = "SELECT * FROM profissional WHERE user_id='$id'";
+
+        $sql = "SELECT nivel FROM usuarios WHERE id='$id'";
         $result = mysqli_query($conexao, $sql);
         if($result){
           $result_temp = mysqli_fetch_row($result);
-          if(!empty($result_temp)){
-            echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
+          $result_temp = $result_temp[0];
+          switch($result_temp){
+            case 1:
+              echo "<li><a href=\"dashboard_relatorio_entradas.php\">Relatório de Entradas</a></li>";
+              break;
+
+            case 2:
+
+              break;
+
+            case 3:
+              echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
+              break;
           }
         }
         ?>
@@ -48,17 +60,10 @@ if (!$conexao) {
         <li><a href="auth.php">Sair</a></li>
       </ul>
     </nav>
-
     <article>
-      <form class="colform" action="teste.php" method="post">
-        <h2> Realizar Teste</h2>
-        <label for="name">Website: </label><input type="text" name="website" />
-        <label for="name">Palavra-chave: </label><input type="text" name="palavra_chave" />
-        <input type="submit" name="action" value="Salvar Entrada"/>
-        <input type="submit" name="action" value="Realizar Teste"/>
+        <h2>Relatório de Entradas</h2>
       </form>
     </article>
-
     <footer>Copyright © SEOFuturo.com</footer>
   </div>
 </body>

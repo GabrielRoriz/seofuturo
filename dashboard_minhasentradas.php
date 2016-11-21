@@ -53,7 +53,7 @@ if (!$conexao) {
         if($result){
           $result_temp = mysqli_fetch_row($result);
           if(!empty($result_temp)){
-            echo "<li><a href=\"auth.php\">Minhas Conexões</a></li>";
+            echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
           }
         }
         ?>
@@ -64,7 +64,6 @@ if (!$conexao) {
     <article>
       <h2> Minhas Entradas</h2>
       <?php
-      session_start();
       $host = "localhost";
       $user = "root";
       $pass = "";
@@ -111,7 +110,6 @@ if (!$conexao) {
         echo "</table>";
       }
       ?>
-    </form>
   </article>
   <footer>Copyright © SEOFuturo.com</footer>
 </div>

@@ -17,6 +17,14 @@ if (!$conexao) {
 <head>
   <meta charset="UTF-8">
   <title> Dashboard | Início</title>
+  <script type="text/javascript">
+    function login_successfully(){
+      document.location = 'dashboard_minhasconexoes.php';
+    }
+    function login_failed(){
+      document.location = 'dashboard_minhasconexoes.php';
+    }
+  </script>
   <link rel="stylesheet" type="text/css" href="style_dashboard.css">
   <style>
   </style>
@@ -68,7 +76,7 @@ if (!$conexao) {
           $result = mysqli_query($conexao, $sql);
           if($result){
             //redirecionar para a página de minhas conexões
-            echo "Sucesso rapazeada";
+            echo "<script> login_successfully() </script>";
           } else {
             echo "Deu problema em criar a conexão";
           }

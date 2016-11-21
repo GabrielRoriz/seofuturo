@@ -35,12 +35,24 @@ if (!$conexao) {
         <?php
         session_start();
         $id = $_SESSION['id'];
-        $sql = "SELECT * FROM profissional WHERE user_id='$id'";
+
+        $sql = "SELECT nivel FROM usuarios WHERE id='$id'";
         $result = mysqli_query($conexao, $sql);
         if($result){
           $result_temp = mysqli_fetch_row($result);
-          if(!empty($result_temp)){
-            echo "<li><a href=\"auth.php\">Minhas Conexões</a></li>";
+          $result_temp = $result_temp[0];
+          switch($result_temp){
+            case 1:
+              echo "<li><a href=\"dashboard_relatorio_entradas.php\">Relatório de Entradas</a></li>";
+              break;
+
+            case 2:
+
+              break;
+
+            case 3:
+              echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
+              break;
           }
         }
         ?>

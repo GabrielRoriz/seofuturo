@@ -40,7 +40,7 @@ if (!$conexao) {
         if($result){
           $result_temp = mysqli_fetch_row($result);
           if(!empty($result_temp)){
-            echo "<li><a href=\"auth.php\">Minhas Conexões</a></li>";
+            echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
           }
         }
         ?>
@@ -65,7 +65,6 @@ if (!$conexao) {
           exit;
         }
 
-        session_start();
         $login = $_SESSION["login"];
         $senha = $_SESSION["senha"];
         $sql = mysqli_query($conexao, "SELECT * FROM usuarios WHERE login = '$login' and senha = '$senha'");
