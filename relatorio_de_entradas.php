@@ -19,11 +19,18 @@ if (!$conexao) {
   <title> Dashboard | Início</title>
   <link rel="stylesheet" type="text/css" href="style_dashboard.css">
   <style>
-  #input_search{
-    width: 75%;
+  table, td, th {
+    text-align: center;
+    border: 1px solid black;
   }
-  #select_search{
-    width: 88.5%;
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    height: 50px;
   }
   </style>
 </head>
@@ -69,17 +76,60 @@ if (!$conexao) {
       </ul>
     </nav>
     <article>
-      <h2> Buscar Profissionais</h2>
-      <form action="search_profissional.php" method="post">
-
-        <input id="input_search"  type="text" name="textsearch">
-        <input type="submit" value="Pesquisar">
-        <select id="select_search" name="filter_search">
-          <option value="name">Nome</option>
-          <option value="exp">Experiência em Programação</option>
-          <option value="esp">Especialidades</option>
-        </select>
+      <h2>Relatório de Entradas</h2>
+      <form action="relatorio_de_entradas.php" method="post" align="center">
+        Digite a quantidade de itens que você deseja filtrar para gerar o relatório:
+        <br>
+        <input name="number" type="text">
+        <input type="submit" value="Gerar Relatório">
       </form>
+      <div align="center">
+        <?php
+        $value = $_POST['number'];
+
+        if(is_numeric($value)){
+          $i = 1;
+          echo "<table>";
+          echo "<tr>";
+          echo "<th>Nº</th>";
+          echo "<th>Website</th>";
+          echo "<th>Website Contagem</th>";
+          echo "<th>Nº</th>";
+          echo "<th>Palavra-chave</th>";
+          echo "<th>Palavra-chave Contagem</th>";
+          echo "</tr>";
+
+          $sql = "SELECT * FROM url_count ORDER BY count DESC LIMIT $value";
+          $result = mysqli_query($conexao, $sql);
+
+          $sql_keyword = "SELECT * FROM keyword_count ORDER BY count DESC LIMIT $value";
+          $result_keyword = mysqli_query($conexao, $sql_keyword);
+
+          if($result){
+            while($row = mysqli_fetch_array($result))
+            {
+              $row_keyword = mysqli_fetch_array($result_keyword);
+              echo "<tr>";
+              echo "<th>" . $i . "</th>";
+              echo "<td>" .  $row[0] . "</td>";
+              echo "<td>" .  $row[1] . "</td>";
+              echo "<th>" . $i . "</th>";
+              echo "<td>" .  $row_keyword[0] . "</td>";
+              echo "<td>" .  $row_keyword[1] . "</td>";
+              echo "<tr>";
+              $i = $i + 1;
+            }
+          }
+
+
+
+
+          echo "</table>";
+        } else {
+          echo "<h1>Digite um número válido!</h1>";
+        }
+        ?>
+      </div>
     </article>
     <footer>Copyright © SEOFuturo.com</footer>
   </div>

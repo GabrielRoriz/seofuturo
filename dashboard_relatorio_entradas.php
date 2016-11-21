@@ -43,16 +43,16 @@ if (!$conexao) {
           $result_temp = $result_temp[0];
           switch($result_temp){
             case 1:
-              echo "<li><a href=\"dashboard_relatorio_entradas.php\">Relatório de Entradas</a></li>";
-              break;
+            echo "<li><a href=\"dashboard_relatorio_entradas.php\">Relatório de Entradas</a></li>";
+            break;
 
             case 2:
 
-              break;
+            break;
 
             case 3:
-              echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
-              break;
+            echo "<li><a href=\"dashboard_minhasconexoes.php\">Minhas Conexões</a></li>";
+            break;
           }
         }
         ?>
@@ -62,6 +62,12 @@ if (!$conexao) {
     </nav>
     <article>
         <h2>Relatório de Entradas</h2>
+        <form action="relatorio_de_entradas.php" method="post" align="center">
+            Digite a quantidade de itens que você deseja filtrar para gerar o relatório:
+            <br>
+          <input  type="text" name="number">
+          <input type="submit" value="Gerar Relatório">
+        </form>
       </form>
     </article>
     <footer>Copyright © SEOFuturo.com</footer>
