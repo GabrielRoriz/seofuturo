@@ -62,12 +62,12 @@ if (!$conexao) {
     </nav>
 
     <article>
-      <form class="colform" action="teste.php" method="post">
+      <form class="colform" action="resultado.php" method="post">
         <h2> Realizar Teste</h2>
         <label for="name">Website: </label><input type="text" name="website" />
         <label for="name">Palavra-chave: </label><input type="text" name="palavra_chave" />
-        <input type="submit" name="action" value="Salvar Entrada"/>
         <input type="submit" name="action" value="Realizar Teste"/>
+        <input type="submit" name="action" value="Salvar Entrada"/>
       </form>
     </article>
 

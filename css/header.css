@@ -1,0 +1,16 @@
+nav img {
+	position: relative;
+	height: 80%;
+	top: 50%;
+	transform: translateY(-50%);
+	
+}
+
+.nav-bar-option {
+	color: #263238;
+	font-weight: 500;
+}
+
+.nav-bar-option:hover{
+	background: #e3f2fd;
+}

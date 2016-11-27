@@ -89,19 +89,13 @@ if (!$conexao) {
         $count = $count[0];
         $count = $count + 1;
         $sql_update = "UPDATE keyword_count SET count='$count' WHERE keyword='$keyword'";
-        
+
         $result_update = mysqli_query($conexao, $sql_update);
         if($result_update){
           echo "<script> login_successfully() </script>";
         }
       }
     }
-
-
-
-
-
-
 
     //REALIZAR TESTE
   } else {
